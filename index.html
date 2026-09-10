@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Sanctified Fumigation — Invoicing</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <svg class="seal" viewBox="0 0 48 48" width="34" height="34" aria-hidden="true">
+      <circle cx="24" cy="24" r="21" fill="#000000" stroke="#FEDC00" stroke-width="2"/>
+      <path d="M24 10 L34 15 V24 C34 32 29 37 24 39 C19 37 14 32 14 24 V15 Z" fill="none" stroke="#FEDC00" stroke-width="1.6"/>
+      <path d="M18 24 L22.5 28.5 L31 19" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="brand-text">
+      <span class="brand-name">Sanctified Fumigation</span>
+      <span class="brand-sub">Invoicing</span>
+    </div>
+  </div>
+  <div id="auth-area" class="auth-area">
+    <button id="signin-btn" class="btn btn-google">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.92c1.7-1.57 2.68-3.88 2.68-6.62z"/><path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.92-2.26c-.81.54-1.84.86-3.04.86-2.34 0-4.32-1.58-5.03-3.7H.96v2.33A9 9 0 0 0 9 18z"/><path fill="#FBBC05" d="M3.97 10.72A5.4 5.4 0 0 1 3.68 9c0-.6.1-1.18.29-1.72V4.95H.96A9 9 0 0 0 0 9c0 1.45.35 2.83.96 4.05l3.01-2.33z"/><path fill="#EA4335" d="M9 3.58c1.32 0 2.51.46 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .96 4.95l3.01 2.33C4.68 5.16 6.66 3.58 9 3.58z"/></svg>
+      Sign in with Google
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+
+    <section class="panel collapsible open">
+      <button class="panel-title panel-toggle" data-target="settings-body">
+        Company Details <span class="chev">›</span>
+      </button>
+      <div id="settings-body" class="panel-body">
+        <label>Company address<input type="text" id="set-companyAddress" placeholder="Street, City, State"></label>
+        <label>Phone<input type="text" id="set-phone" placeholder="+234..."></label>
+        <label>Contact email<input type="email" id="set-email" placeholder="info@sanctifiedfumigation.com"></label>
+        <label>Website<input type="text" id="set-website" placeholder="www.sanctifiedfumigation.com"></label>
+        <label>Currency symbol<input type="text" id="set-currency" placeholder="₦"></label>
+        <label>Default VAT %<input type="text" id="set-vatRate" placeholder="7.5"></label>
+        <label>Bank account name<input type="text" id="set-accountName"></label>
+        <label>Bank account number<input type="text" id="set-accountNumber"></label>
+        <label>Bank name<input type="text" id="set-bankName"></label>
+        <button id="save-settings" class="btn btn-secondary">Save details</button>
+      </div>
+    </section>
+
+    <section class="panel collapsible">
+      <button class="panel-title panel-toggle" data-target="log-body">
+        Saved Invoices <span class="chev">›</span>
+      </button>
+      <div id="log-body" class="panel-body">
+        <div id="invoice-log" class="sent-log">
+          <p class="empty-hint">No invoices yet.</p>
+        </div>
+      </div>
+    </section>
+
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+
+    <section class="panel compose-panel">
+      <h2 class="panel-title">Invoice Details</h2>
+
+      <div class="field-row">
+        <label class="grow">Invoice Number
+          <span class="inline-input">
+            <input type="text" id="field-invoiceNo">
+            <button id="next-number-btn" class="btn-mini" type="button">Next #</button>
+          </span>
+        </label>
+        <label class="grow">Issue Date<input type="date" id="field-issueDate"></label>
+        <label class="grow">Due Date<input type="date" id="field-dueDate"></label>
+      </div>
+
+      <div class="field-row">
+        <label class="grow">Client Name<input type="text" id="field-clientName" placeholder="Client or company name"></label>
+        <label class="grow">Client Email<input type="email" id="field-clientEmail" placeholder="client@example.com"></label>
+      </div>
+      <label>Client Address<input type="text" id="field-clientAddress" placeholder="Billing address"></label>
+      <label>Description <span style="font-weight:400;text-transform:none;">(what this invoice is for)</span><input type="text" id="field-description" placeholder="e.g. General fumigation service for 3-bedroom apartment"></label>
+
+      <h3 class="subhead">Workmanship</h3>
+      <div class="totals-row workmanship-row">
+        <span>Workmanship Fee</span>
+        <input type="text" id="field-workmanshipAmount" class="amount-input-inline" placeholder="0">
+      </div>
+
+      <h3 class="subhead">Products Supplied</h3>
+      <div class="items-table" id="items-table-products">
+        <div class="items-head">
+          <span>Description</span><span>Qty</span><span>Unit Price</span><span>Amount</span><span></span>
+        </div>
+        <div id="items-rows-products"></div>
+      </div>
+      <button id="add-row-btn-products" class="btn btn-secondary" type="button">+ Add Product Item</button>
+
+      <div class="totals-block">
+        <div class="totals-row">
+          <span>VAT (%) on Workmanship</span>
+          <input type="text" id="field-vatRate" class="tax-input">
+        </div>
+        <div class="totals-row"><span>VAT Amount</span><span id="calc-vatamount">0.00</span></div>
+        <div class="totals-row"><span>Products Supplied</span><span id="calc-products">0.00</span></div>
+        <div class="totals-row"><span>Grand Total</span><span id="calc-grandtotal">0.00</span></div>
+        <div class="totals-row">
+          <span>Advance Paid</span>
+          <input type="text" id="field-advance" class="tax-input" placeholder="0">
+        </div>
+        <div class="totals-row total"><span>Balance Due</span><span id="calc-balance">0.00</span></div>
+      </div>
+      <p class="amount-words"><strong>Amount in Words:</strong> <span id="calc-words"></span></p>
+
+      <label>Notes / Payment Terms<input type="text" id="field-notes" placeholder="e.g. Payment due within 7 days of invoice date"></label>
+
+      <div class="compose-actions">
+        <span id="status-msg" class="status-msg"></span>
+        <div class="action-btns">
+          <button id="download-btn" class="btn btn-secondary" type="button">Download PDF</button>
+          <button id="email-btn" class="btn btn-primary" type="button" disabled>Sign in to email</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel preview-panel">
+      <h2 class="panel-title">Preview</h2>
+      <div id="invoice-preview" class="invoice-preview"></div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Email PDF modal -->
+<div id="email-modal" class="modal hidden">
+  <div class="modal-box">
+    <h3>Send Invoice by Email</h3>
+    <label>To<input type="text" id="modal-to" placeholder="client@example.com"></label>
+    <label>Subject<input type="text" id="modal-subject"></label>
+    <label>Message<textarea id="modal-message" rows="4"></textarea></label>
+    <div class="modal-actions">
+      <button id="modal-cancel" class="btn btn-secondary">Cancel</button>
+      <button id="modal-send" class="btn btn-primary">Send</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+<script src="https://unpkg.com/jspdf-autotable@latest/dist/jspdf.plugin.autotable.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
